@@ -1,0 +1,14 @@
+{
+  "application": "SOC Jira Automation",
+  "version": "X.Y.Z",
+  "status": "latest",
+  "channel": "stable",
+  "owner": "Dimas Vidillah Christian",
+  "released_at": "YYYY-MM-DDTHH:MM:SS+07:00",
+  "minimum_version": "X.Y.Z",
+  "runtime_asset": "SOC-Automation-vX.Y.Z.zip",
+  "runtime_latest_alias": "SOC-Automation-latest.zip",
+  "runtime_sha256": "REPLACE_WITH_SHA256",
+  "tui_version": "X.Y.Z",
+  "tui_asset": "SOC-Automation-Manager-TUI-vX.Y.Z.zip"
+}
