@@ -1,44 +1,71 @@
-# SOC Automation vX.Y.Z
+# SOC Automation {{RELEASE_VERSION}}
 
-**Status:** LATEST  
-**Channel:** Stable  
+> **{{RELEASE_STATUS}}**
+
+**Runtime:** {{RUNTIME_VERSION}}  
+**Manager/TUI:** {{MANAGER_TUI_VERSION}}  
+**Release type:** {{RELEASE_TYPE}}  
 **Owned by:** Dimas Vidillah Christian  
-**Published:** YYYY-MM-DD  
-**Minimum version:** X.Y.Z
 
-## Ringkasan
+## Summary
 
-Jelaskan tujuan release dan masalah yang diselesaikan.
+{{SUMMARY}}
 
-## Perubahan
+## Choose a Package
 
-- Fitur baru
-- Perubahan alur kerja
-- Perubahan TUI
-- Perubahan dokumentasi ID/EN
+### New installation
 
-## Instalasi
+Download the Full Installer ZIP and checksum.
 
-1. Unduh package dan `.sha256`.
-2. Verifikasi SHA-256.
-3. Jalankan Inspect dan Dry-run melalui TUI.
-4. Apply transactional release.
-5. Jalankan post-update verification.
+### Existing installation
 
-## Kompatibilitas dan migrasi
+Use the incremental runtime update or cumulative Manager/TUI update only when the source version is explicitly supported.
 
-Jelaskan minimum version, restart, schema migration, dan compatibility.
+## Changes
 
-## Rollback
+{{CHANGELOG}}
 
-Jelaskan target rollback dan komponen yang harus direstart.
+## Security Validation
 
-## Asset
+```text
+Active source scan             : PASS
+Installer package scan         : PASS
+Secret findings                : 0
+Generated installer compile    : PASS
+Extracted installer compile    : PASS
+Internal checksums             : PASS
+ZIP integrity                  : PASS
+Default-root installation      : PASS
+Custom-root installation       : PASS
+Automatic root detection       : PASS
+```
 
-- Runtime package
-- Runtime SHA-256
-- Manager/TUI package bila ada
-- Manager/TUI SHA-256 bila ada
-- Release notes Indonesia
-- Release notes English
-- `release.json`
+## Verify
+
+```bash
+sha256sum -c {{CHECKSUM_FILE}}
+```
+
+## Install
+
+```bash
+unzip {{PACKAGE_FILE}}
+cd {{EXTRACTED_DIRECTORY}}
+python3 install.py
+```
+
+Custom root:
+
+```bash
+python3 install.py --root "$HOME/SOC-Automation-Custom-Test"
+```
+
+## Documentation
+
+https://christiandimasvidillah.github.io/soc-automation-docs/
+
+## Notes
+
+- Run the curses TUI directly in an interactive terminal.
+- Do not apply a Full Installer through Incremental Update Manager.
+- Do not publish credentials, raw evidence, databases, logs, or backups.

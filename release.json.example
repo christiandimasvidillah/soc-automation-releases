@@ -1,14 +1,42 @@
 {
-  "application": "SOC Jira Automation",
-  "version": "X.Y.Z",
+  "schema_version": 1,
+  "application": "SOC Automation",
+  "version": "REPLACE_WITH_RELEASE_VERSION",
   "status": "latest",
   "channel": "stable",
   "owner": "Dimas Vidillah Christian",
-  "released_at": "YYYY-MM-DDTHH:MM:SS+07:00",
-  "minimum_version": "X.Y.Z",
-  "runtime_asset": "SOC-Automation-vX.Y.Z.zip",
-  "runtime_latest_alias": "SOC-Automation-latest.zip",
-  "runtime_sha256": "REPLACE_WITH_SHA256",
-  "tui_version": "X.Y.Z",
-  "tui_asset": "SOC-Automation-Manager-TUI-vX.Y.Z.zip"
+  "runtime_version": "REPLACE_WITH_RUNTIME_VERSION",
+  "manager_tui_version": "REPLACE_WITH_MANAGER_TUI_VERSION",
+  "released_at": "REPLACE_WITH_ISO8601_TIMESTAMP",
+  "documentation_url": "https://christiandimasvidillah.github.io/soc-automation-docs/",
+  "release_url": "REPLACE_WITH_RELEASE_URL",
+  "assets": {
+    "full_install": {
+      "file": "REPLACE_WITH_PACKAGE_FILE",
+      "sha256_file": "REPLACE_WITH_CHECKSUM_FILE",
+      "sha256": "REPLACE_WITH_FINAL_SHA256"
+    }
+  },
+  "security_validation": {
+    "active_source_scan": "pass",
+    "installer_scan": "pass",
+    "secret_findings": 0,
+    "generated_installer_compile": "pass",
+    "extracted_installer_compile": "pass",
+    "internal_checksums": "pass",
+    "zip_integrity": "pass",
+    "backup_exclusion": "pass",
+    "production_state_exclusion": "pass"
+  },
+  "acceptance": {
+    "default_root": "pass",
+    "custom_root": "pass",
+    "automatic_root_detection": "pass",
+    "explicit_root": "pass",
+    "interactive_tui": "pass"
+  },
+  "documentation": {
+    "default_language": "id",
+    "secondary_language": "en"
+  }
 }
