@@ -1,0 +1,55 @@
+#!/bin/sh
+set -eu
+
+# soc-root-aware-launcher-v1
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
+DERIVED_ROOT=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd -P)
+EXPLICIT_ROOT=""
+PREV=""
+for ARG in "$@"; do
+    if [ "$PREV" = "--root" ]; then
+        EXPLICIT_ROOT=$ARG
+        break
+    fi
+    PREV=$ARG
+done
+if [ -n "$EXPLICIT_ROOT" ]; then
+    ROOT=$EXPLICIT_ROOT
+elif [ -n "${SOC_AUTOMATION_ROOT:-}" ]; then
+    ROOT=$SOC_AUTOMATION_ROOT
+elif [ -f "$DERIVED_ROOT/.installation-root" ]; then
+    ROOT=$(cat "$DERIVED_ROOT/.installation-root")
+else
+    ROOT=$DERIVED_ROOT
+fi
+ROOT=$(CDPATH= cd -- "$ROOT" 2>/dev/null && pwd -P) || {
+    echo "ERROR: Installation root tidak valid: $ROOT" >&2
+    exit 1
+}
+PYTHON="$ROOT/.venv/bin/python"
+TUI="$ROOT/manager/soc_control_tui.py"
+CURRENT="$ROOT/current"
+if [ ! -x "$PYTHON" ]; then
+    echo "ERROR: Python virtual environment tidak ditemukan." >&2
+    echo "Effective root: $ROOT" >&2
+    echo "Expected: $PYTHON" >&2
+    exit 1
+fi
+if [ ! -f "$TUI" ]; then
+    echo "ERROR: TUI manager tidak ditemukan." >&2
+    echo "Effective root: $ROOT" >&2
+    echo "Expected: $TUI" >&2
+    exit 1
+fi
+if [ ! -e "$CURRENT" ] || [ ! -f "$CURRENT/VERSION" ]; then
+    echo "ERROR: Active release tidak valid." >&2
+    echo "Effective root: $ROOT" >&2
+    echo "Expected: $CURRENT/VERSION" >&2
+    exit 1
+fi
+export SOC_AUTOMATION_ROOT="$ROOT"
+export PYTHONPATH="$ROOT/current:$ROOT/manager${PYTHONPATH:+:$PYTHONPATH}"
+case " $* " in
+  *" --root "*) exec "$PYTHON" "$TUI" "$@" ;;
+  *) exec "$PYTHON" "$TUI" --root "$ROOT" "$@" ;;
+esac

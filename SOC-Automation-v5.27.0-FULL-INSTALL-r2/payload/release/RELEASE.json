@@ -1,0 +1,9 @@
+{
+  "application": "SOC Jira Automation",
+  "version": "5.27.0",
+  "installed_at": "2026-08-19T21:09:38.092063+00:00",
+  "previous_version": "5.26.1",
+  "package_sha256": "0ddcd1315e893eab3fbae95e67cc55fa93259a776b5163ebe662725ec249fc11",
+  "status": "active",
+  "description": "Complete Automation Operations Manual and Documentation Viewer visual/search upgrade. Indonesian default with full English parity."
+}
