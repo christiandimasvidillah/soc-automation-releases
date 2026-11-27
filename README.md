@@ -8,40 +8,40 @@ Official stable installer and incremental-update distribution for the **SOC Auto
 
 | Component | Current version | Status |
 |---|---:|---|
-| Runtime | v5.33.0 | Stable (*Gemini · Antigravity Upgrade*) |
-| Manager/TUI | v1.32.0 | Stable cumulative update (*Gemini · Antigravity*) |
-| Full Installer | v5.33.0 | Portable verified release (`SOC-Automation-v5.33.0-FULL-INSTALL.zip`) |
-| Documentation | Indonesia + English | Synchronized for v5.33.0 / TUI v1.32.0 |
+| Runtime | v5.33.1 | Stable (*Gemini · Antigravity Upgrade*) |
+| Manager/TUI | v1.32.1 | Stable cumulative update (*Gemini · Antigravity*) |
+| Full Installer | v5.33.1 | Portable verified release (`SOC-Automation-v5.33.1-FULL-INSTALL.zip`) |
+| Documentation | Indonesia + English | Synchronized for v5.33.1 / TUI v1.32.1 |
 
 ## Download
 
-- **Latest Release (v5.33.0):** https://github.com/christiandimasvidillah/soc-automation-releases/releases/latest
-- **Tag v5.33.0:** https://github.com/christiandimasvidillah/soc-automation-releases/releases/tag/v5.33.0
+- **Latest Release (v5.33.1):** https://github.com/christiandimasvidillah/soc-automation-releases/releases/latest
+- **Tag v5.33.1:** https://github.com/christiandimasvidillah/soc-automation-releases/releases/tag/v5.33.1
 - **Documentation:** https://christiandimasvidillah.github.io/soc-automation-docs/
 
-## v5.33.0 | TUI v1.32.0 Highlights (*Gemini · Antigravity Upgrade*)
+## v5.33.1 | TUI v1.32.1 Highlights (*Gemini · Antigravity Patch*)
 
-- **Safe Hidden-Input `GEMINI_API_KEY` Rotation (`gemini_key_manager.py`, `socctl.py gemini set-key`)**: Hidden `getpass`/`--stdin` input (rejecting raw CLI key arguments), strict URL-safe format validation & optional fail-closed live `--verify` prior to disk mutation, atomic `0600` `shared/.env` persistence (`fcntl.flock` + `fsync` + `os.replace`), immediate `resolve_live_gemini_api_key()` hot-reload, and 12-hex SHA-256 fingerprint-only rotation audit logs (`secrets_disclosed: false`).
-- **Live Gemini Model & Quota Readiness Probe (`socctl.py gemini status` / `probe`)**: Zero-token `models.list()` candidate discovery plus optional minimal 4-token readiness classification (`READY`, `QUOTA_LIMITED`, `OVERLOADED`, `UNAVAILABLE`, `AUTH_INVALID`) hardened by automatic secret redaction (`redact_secrets()`).
-- **Manager/TUI v1.32.0 (`Gemini · Antigravity`)**: Adds **Gemini API & Model Center** to `[F] Feature Control Center` and `[6] Diagnostics` (with masked secret input) plus non-secret `key_fingerprint` reporting in `ai_health.py` while retaining all v5.32.0 Automated Playbook Engine and `FULL_AUTOMATION` capabilities.
+- **Reasoning-Aware Live Gemini Readiness Probe (`gemini_key_manager.py`)**: Allocates `max_output_tokens=1024` with a `60s` timeout and minimal `thinking_config` (`LOW` / `MINIMAL`) for reasoning-class models (`gemini-4-*`, `gemini-3.1-pro-preview`, `gemini-pro-latest`) during `socctl.py gemini probe --generate`, preventing hidden thinking tokens from exhausting the output budget so healthy reasoning models accurately report `READY` instead of `EMPTY_RESPONSE` (never retrying `429`/`503`/`404`/`401` states).
+- **Safe Hidden-Input `GEMINI_API_KEY` Rotation (`socctl.py gemini set-key`)**: Hidden `getpass`/`--stdin` input, strict format validation & optional fail-closed live `--verify`, atomic `0600` `shared/.env` persistence (`fcntl.flock` + `fsync` + `os.replace`), immediate `resolve_live_gemini_api_key()` hot-reload, and 12-hex SHA-256 fingerprint-only audit logs (`secrets_disclosed: false`).
+- **Manager/TUI v1.32.1 (`Gemini · Antigravity`)**: Aligns **Gemini API & Model Center** (`[F] Feature Control Center` and `[6] Diagnostics`) and `[P] Playbook Engine Center` with full custom-root portability and all 7 Safe Full Installer gates.
 
-## Verified Checksums (v5.33.0)
+## Verified Checksums (v5.33.1)
 
 ```text
-3872268f412871b4fd4eca2def048b2b938ad877bcd8709275f849834f46ce2d  SOC-Automation-v5.33.0-FULL-INSTALL.zip
-b0ea81232690e3b976370112956b5fb5b078866567c53164745800587ae8e6c4  soc-automation-patch-v5.33.0.zip
-92864059ecfddce2c0c81462c42388ffa8ed3b58b9fcfd798ea179b2a3f95663  soc-automation-manager-tui-v1.32.0.zip
+025a385a6390f5eccb55bb782cc9b9ee47f313dc0990a327a59556fbe4e44c86  SOC-Automation-v5.33.1-FULL-INSTALL.zip
+32947d18191d4ac28f7171540ef26bde7c7fe389f92740da860e44e29153a4c5  soc-automation-patch-v5.33.1.zip
+c0378f0c265f6ca977d9e13ad861fbd80f7b4bce17a3065c8ae2234d8393179f  soc-automation-manager-tui-v1.32.1.zip
 ```
 
 ## Which Package Should I Use?
 
 ### New installation
 
-Use `SOC-Automation-v5.33.0-FULL-INSTALL.zip`. Supports both the default installation root (`~/SOC-Automation`) and any custom `--root` directory.
+Use `SOC-Automation-v5.33.1-FULL-INSTALL.zip`. Supports both the default installation root (`~/SOC-Automation`) and any custom `--root` directory.
 
 ### Existing v5.31.6+ installation
 
-Apply `soc-automation-patch-v5.33.0.zip` via TUI Update Manager / `deploy_manager.py`, and apply `soc-automation-manager-tui-v1.32.0.zip` via:
+Apply `soc-automation-patch-v5.33.1.zip` via TUI Update Manager / `deploy_manager.py`, and apply `soc-automation-manager-tui-v1.32.1.zip` via:
 
 ```text
 TUI
@@ -51,8 +51,8 @@ TUI
 
 ## What the Full Installer Contains
 
-- Runtime release files (`v5.33.0`)
-- Manager/TUI control plane (`v1.32.0 · Gemini · Antigravity`)
+- Runtime release files (`v5.33.1`)
+- Manager/TUI control plane (`v1.32.1 · Gemini · Antigravity`)
 - Root-aware `soc-tui` launcher
 - Versioned release layout and atomic `current` symlink
 - Python virtual-environment bootstrap
