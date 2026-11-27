@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "application": "SOC Automation",
+  "version": "v5.32.0",
+  "edition": "Gemini · Antigravity",
+  "upgrade_channel": "Gemini-Antigravity Upgrade",
+  "status": "latest",
+  "channel": "stable",
+  "owner": "Dimas Vidillah Christian",
+  "runtime_version": "5.32.0",
+  "manager_tui_version": "1.31.0",
+  "minimum_runtime_upgrade_from": "5.31.6",
+  "released_at": "2026-11-27T18:35:35Z",
+  "documentation_url": "https://christiandimasvidillah.github.io/soc-automation-docs/",
+  "release_url": "https://github.com/christiandimasvidillah/soc-automation-releases/releases/tag/v5.32.0",
+  "assets": {
+    "full_install": {
+      "file": "SOC-Automation-v5.32.0-FULL-INSTALL.zip",
+      "sha256_file": "SOC-Automation-v5.32.0-FULL-INSTALL.zip.sha256",
+      "sha256": "efc223a41e232e40904bec7da22f266282150012df66d456297546585fb3042b",
+      "size_bytes": 521678
+    },
+    "runtime_patch": {
+      "file": "soc-automation-patch-v5.32.0.zip",
+      "sha256_file": "soc-automation-patch-v5.32.0.zip.sha256",
+      "sha256": "abd240438449ec6dd40a34fdcc5aaa1f78bc752340c85d9a4cb925430ec241f9",
+      "size_bytes": 404885
+    },
+    "manager_tui_update": {
+      "file": "soc-automation-manager-tui-v1.31.0.zip",
+      "sha256_file": "soc-automation-manager-tui-v1.31.0.zip.sha256",
+      "sha256": "32d149ee7effef24cd9f46db3ed4292ff256db92bf1310a039908d614cf3af7c",
+      "size_bytes": 49359
+    }
+  },
+  "security_validation": {
+    "active_source_scan": "pass",
+    "installer_scan": "pass",
+    "release_qualification_gate": "pass",
+    "secret_findings": 0,
+    "generated_installer_compile": "pass",
+    "extracted_installer_compile": "pass",
+    "internal_checksums": "pass",
+    "zip_integrity": "pass",
+    "backup_exclusion": "pass",
+    "production_state_exclusion": "pass"
+  },
+  "acceptance": {
+    "default_root": "pass",
+    "custom_root": "pass",
+    "automatic_root_detection": "pass",
+    "explicit_root": "pass",
+    "interactive_tui": "pass"
+  },
+  "documentation": {
+    "default_language": "id",
+    "secondary_language": "en"
+  }
+}

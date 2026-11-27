@@ -8,26 +8,41 @@ Official stable installer and incremental-update distribution for the **SOC Auto
 
 | Component | Current version | Status |
 |---|---:|---|
-| Runtime | v5.27.0 | Stable |
-| Manager/TUI | v1.27.11 | Recommended cumulative update |
-| Full Installer | v5.27.0-r2 | Portable release candidate / publish after final artifact checksum |
-| Documentation | Indonesia + English | Maintained with each release |
+| Runtime | v5.32.0 | Stable (*Gemini · Antigravity Upgrade*) |
+| Manager/TUI | v1.31.0 | Stable cumulative update (*Gemini · Antigravity*) |
+| Full Installer | v5.32.0 | Portable verified release (`SOC-Automation-v5.32.0-FULL-INSTALL.zip`) |
+| Documentation | Indonesia + English | Synchronized for v5.32.0 / TUI v1.31.0 |
 
 ## Download
 
-- **Latest Full Installer:** https://github.com/christiandimasvidillah/soc-automation-releases/releases/latest
-- **Manager/TUI v1.27.11:** https://github.com/christiandimasvidillah/soc-automation-releases/releases/tag/manager-v1.27.11
+- **Latest Release (v5.32.0):** https://github.com/christiandimasvidillah/soc-automation-releases/releases/latest
+- **Tag v5.32.0:** https://github.com/christiandimasvidillah/soc-automation-releases/releases/tag/v5.32.0
 - **Documentation:** https://christiandimasvidillah.github.io/soc-automation-docs/
+
+## v5.32.0 | TUI v1.31.0 Highlights (*Gemini · Antigravity Upgrade*)
+
+- **Automated Playbook Engine**: Deterministic *blockers-first* False Positive evaluation over privacy-sanitized payloads (`safe_payload`) with `confidence_score >= min_confidence` (default `0.90`), atomic `fcntl.flock` store, execution audit logs, and inactive `CANDIDATE` rule mining from `*_sanitized.json`.
+- **`MANUAL REVIEW REQUIRED` Policy & Empty Analysis Auto-Close**: Skips writing to the Jira Analysis Result custom field on manual-review outcomes (delivering sanitized summaries via Telegram only), while enabling `FULL_AUTOMATION` automatic closure (`False Incident -> Done` + SIEM closure) even when Jira's Analysis Result field is empty.
+- **Authoritative Gemini Credentials & Tiered Model Rotation**: Authoritative `shared/.env` loading (`override=True`), runtime `GEMINI_API_KEY` hot-reload, and tiered Pro / Gemini 4 reasoning primary -> Gemini 3.x Flash fallback rotation.
+- **Manager/TUI v1.31.0 (`Gemini · Antigravity`)**: Adds `[P] Playbook Engine Center` and `socctl.py playbook` CLI subcommands.
+
+## Verified Checksums (v5.32.0)
+
+```text
+efc223a41e232e40904bec7da22f266282150012df66d456297546585fb3042b  SOC-Automation-v5.32.0-FULL-INSTALL.zip
+abd240438449ec6dd40a34fdcc5aaa1f78bc752340c85d9a4cb925430ec241f9  soc-automation-patch-v5.32.0.zip
+32d149ee7effef24cd9f46db3ed4292ff256db92bf1310a039908d614cf3af7c  soc-automation-manager-tui-v1.31.0.zip
+```
 
 ## Which Package Should I Use?
 
 ### New installation
 
-Use the latest `FULL-INSTALL` package. The portable revision supports both the default installation root and a custom root.
+Use `SOC-Automation-v5.32.0-FULL-INSTALL.zip`. Supports both the default installation root (`~/SOC-Automation`) and any custom `--root` directory.
 
-### Existing v5.27.0 installation
+### Existing v5.31.6 installation
 
-Use the cumulative Manager/TUI v1.27.11 update through:
+Apply `soc-automation-patch-v5.32.0.zip` via TUI Update Manager / `deploy_manager.py`, and apply `soc-automation-manager-tui-v1.31.0.zip` via:
 
 ```text
 TUI
@@ -35,23 +50,14 @@ TUI
 → Apply Manager/TUI update from path
 ```
 
-v1.27.11 supports direct upgrades from v1.27.8, v1.27.9, and v1.27.10. Installing intermediate versions is not required.
-
-### Future runtime upgrades
-
-Starting with the next stable runtime release, publish both:
-
-- a Full Installer for new installations;
-- an incremental update for supported existing versions.
-
 ## What the Full Installer Contains
 
-- Runtime release files
-- Manager/TUI control plane
+- Runtime release files (`v5.32.0`)
+- Manager/TUI control plane (`v1.31.0 · Gemini · Antigravity`)
 - Root-aware `soc-tui` launcher
 - Versioned release layout and atomic `current` symlink
 - Python virtual-environment bootstrap
-- Bilingual documentation payload
+- Bilingual documentation payload (`docs/id/` & `docs/en/`)
 - Status and Documentation viewers
 - Tests and release-validation metadata
 
@@ -86,8 +92,9 @@ The curses TUI must be launched directly from an interactive terminal. Pipes and
 
 Every published installer must pass:
 
+- release qualification gate (`release_qualification_gate.py`);
 - explicit active-file allowlisting;
-- fixture-aware secret scanning;
+- fixture-aware secret scanning (`0` findings);
 - backup and obsolete-source exclusion;
 - production-state exclusion;
 - generated installer compilation;
@@ -96,48 +103,15 @@ Every published installer must pass:
 - extracted installer compilation;
 - internal `SHA256SUMS` verification;
 - manifest integrity;
-- ZIP integrity;
-- default-root fresh installation;
-- custom-root fresh installation;
-- automatic root detection;
-- interactive TUI startup.
-
-## Release Assets
-
-A stable Full Installer release should contain:
-
-```text
-SOC-Automation-vX.Y.Z-FULL-INSTALL[-rN].zip
-SOC-Automation-vX.Y.Z-FULL-INSTALL[-rN].zip.sha256
-SHA256SUMS
-release.json
-FRESH_INSTALL_ACCEPTANCE_*.md
-FRESH_INSTALL_ACCEPTANCE_*.json
-```
-
-A Manager/TUI release should contain:
-
-```text
-SOC-Automation-Manager-TUI-vA.B.C-*.zip
-SOC-Automation-Manager-TUI-vA.B.C-*.zip.sha256
-V*_TEST_REPORT.json
-```
+- ZIP integrity.
 
 ## Release Policy
 
+- Never commit binary `.zip` archives into the Git working tree; attach binaries as GitHub Release assets.
 - Never replace a published asset with different content under the same name.
-- Never reuse a published checksum after rebuilding or renaming an artifact.
 - Keep historical releases available.
 - Mark only the newest validated Full Installer as **Latest**.
-- Do not mark Manager/TUI-only updates as the main Latest release.
 - Publish Indonesian and English documentation with every update.
-- Publish incremental patches only for explicitly supported source versions.
-
-## Superseded Internal Builds
-
-- Manager/TUI v1.27.9: generated-installer newline defect.
-- Manager/TUI v1.27.10: non-interactive launcher validation inherited the primary installation environment.
-- Manager/TUI v1.27.11: recommended cumulative update.
 
 ## Public Portfolio Boundary
 
