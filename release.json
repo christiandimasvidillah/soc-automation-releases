@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
   "application": "SOC Automation",
-  "version": "v5.33.2",
+  "version": "v5.33.3",
   "edition": "Gemini · Antigravity",
   "upgrade_channel": "Gemini-Antigravity Upgrade",
   "status": "latest",
   "channel": "stable",
   "owner": "Dimas Vidillah Christian",
-  "runtime_version": "5.33.2",
-  "manager_tui_version": "1.32.2",
+  "runtime_version": "5.33.3",
+  "manager_tui_version": "1.32.3",
   "minimum_runtime_upgrade_from": "5.31.6",
-  "released_at": "2026-11-27T23:48:41Z",
+  "released_at": "2026-11-28T00:26:25Z",
   "documentation_url": "https://christiandimasvidillah.github.io/soc-automation-docs/",
-  "release_url": "https://github.com/christiandimasvidillah/soc-automation-releases/releases/tag/v5.33.2",
+  "release_url": "https://github.com/christiandimasvidillah/soc-automation-releases/releases/tag/v5.33.3",
   "assets": {
     "full_install": {
-      "file": "SOC-Automation-v5.33.2-FULL-INSTALL.zip",
-      "sha256_file": "SOC-Automation-v5.33.2-FULL-INSTALL.zip.sha256",
-      "sha256": "3f90adfca1848caa1b53d7eea25d25c712561d7363ff46f0bc329e5d038b2180",
-      "size_bytes": 603687
+      "file": "SOC-Automation-v5.33.3-FULL-INSTALL.zip",
+      "sha256_file": "SOC-Automation-v5.33.3-FULL-INSTALL.zip.sha256",
+      "sha256": "7c97f77aadbecc1619db5b5e42ab07391fc7b845a5d1b8cb98f96ab97d180190",
+      "size_bytes": 616339
     },
     "runtime_patch": {
-      "file": "soc-automation-patch-v5.33.2.zip",
-      "sha256_file": "soc-automation-patch-v5.33.2.zip.sha256",
-      "sha256": "9f8a3ad2d575dcfa81eb90788012a3f6eaaaaafba6cf4a7880c65a26a850dd71",
-      "size_bytes": 480760
+      "file": "soc-automation-patch-v5.33.3.zip",
+      "sha256_file": "soc-automation-patch-v5.33.3.zip.sha256",
+      "sha256": "88cf493da8dba1fbbf379887d14105316e9a51f30e1450eb1fa63ca17f527fbf",
+      "size_bytes": 492054
     },
     "manager_tui_update": {
-      "file": "soc-automation-manager-tui-v1.32.2.zip",
-      "sha256_file": "soc-automation-manager-tui-v1.32.2.zip.sha256",
-      "sha256": "26d8bfaa7ed958477fe3f33aa3ab99f99e78628222f76b69f877632f67fcd93d",
-      "size_bytes": 56989
+      "file": "soc-automation-manager-tui-v1.32.3.zip",
+      "sha256_file": "soc-automation-manager-tui-v1.32.3.zip.sha256",
+      "sha256": "ef232c2800e8f9c27404514fcb4c2428a70024c8bc3ea58de1da55e62dd874f5",
+      "size_bytes": 57696
     }
   },
   "security_validation": {
